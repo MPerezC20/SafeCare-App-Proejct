@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="super_gray">#292621</color>
+    <color name="light_gray">#E0E0E0</color>
+    <color name="login_link_blue">#5A76DB</color>
+    <color name="select">#EFCE10</color>
+    <color name="un_select">#929DC3</color>
+    <color name="ultra_gray">#292621</color>
+
+
+
+    <!-- Paleta de SafeCare+ basada en la imagen -->
+    <color name="primary_blue">#B4C7F2</color>
+    <color name="tercero_blue">#7790ED</color>
+    <color name="dark_gray">#3A3A3A</color>
+    <color name="text_gray">#6C6C6C</color>
+    <color name="background_top_blue">#7790ED</color>
+
+    <!-- Colores de Material 3 por defecto -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+
+    <!-- Colores nuevos -->
+    <color name="primary_color">#2196F3</color>
+    <color name="primary_dark">#1976D2</color>
+    <color name="gray">#757575</color>
+
+    <color name="secondary_blue">#5C92FF</color>
+    <color name="dark_blue">#0056D4</color>
+    <color name="background_light">#F5F7FA</color>
+    <color name="border_light_blue">#7790ED</color>
+    <color name="button_background_blue">#4A86E8</color>
+
+    <!-- Colores Adicionales Home -->
+    <color name="soft_blue">#DCE5F9</color>
+    <color name="card_background">#F8F8F8</color>
+</resources>

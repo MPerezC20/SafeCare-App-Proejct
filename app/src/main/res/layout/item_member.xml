@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"   app:cardBackgroundColor="@android:color/transparent"> <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/blue_border"  android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/member_image"
+        android:src="@drawable/no_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/member_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Nombre del Miembro"
+        android:textColor="@color/super_gray"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/member_image"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/member_role"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/super_gray"
+        android:text="Rol"
+        app:layout_constraintStart_toEndOf="@id/member_name"
+        app:layout_constraintTop_toTopOf="@id/member_name" />
+
+    <TextView
+        android:id="@+id/member_info_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/super_gray"
+        android:text="Información"
+        app:layout_constraintStart_toStartOf="@id/member_name"
+        app:layout_constraintTop_toBottomOf="@id/member_name" />
+
+    <TextView
+        android:id="@+id/member_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edad: "
+        android:textColor="@color/super_gray"
+        app:layout_constraintStart_toStartOf="@id/member_info_title"
+        app:layout_constraintTop_toBottomOf="@id/member_info_title" />
+
+    <TextView
+        android:id="@+id/member_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/super_gray"
+        android:text="Sexo: "
+        app:layout_constraintStart_toEndOf="@id/member_age"
+        app:layout_constraintTop_toTopOf="@id/member_age" />
+
+    <TextView
+        android:id="@+id/member_disability"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Discapacidad: LOREM IPSUM"
+        android:textColor="@color/super_gray"
+        app:layout_constraintStart_toStartOf="@id/member_age"
+        app:layout_constraintTop_toBottomOf="@id/member_age"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

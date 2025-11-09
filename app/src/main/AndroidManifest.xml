@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Permisos para Bluetooth Low Energy (BLE) -->
+    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />
+    <!-- Estos son necesarios para escanear en Android 12+ -->
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- Android 10+ necesita la ubicación de fondo para escaneo persistente -->
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+
+    <!-- Permiso para Cámara (Monitoreo) -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+
+    <!-- Permiso de Internet para streaming o APIs -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SafeCarePlus"
+        tools:targetApi="31">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.SafeCarePlus">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+
+        <!-- register -->
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false"
+            android:label="@string/title_register"
+            android:theme="@style/Theme.SafeCarePlus" />
+
+        <!-- Declaración de la actividad de Login -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:label="@string/title_login"
+            android:theme="@style/Theme.SafeCarePlus" />
+
+        <!-- Declaración de la actividad Home -->
+        <activity
+            android:name=".HomeActivity"
+            android:exported="false"
+            android:label="@string/title_home"
+            android:theme="@style/Theme.SafeCarePlus" />
+    </application>
+</manifest>

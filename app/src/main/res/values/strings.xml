@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SafeCare+</string>
+    <string name="welcome_title">Bienvenido</string>
+    <string name="app_description">Monitoreo inteligente para tu seguridad y salud. Conecta tus cámaras y pulseras de pulsación para una tranquilidad total.</string>
+    <string name="button_login">Iniciar Sesión</string>
+    <string name="button_register">Registrarse</string>
+
+    <!-- Register Screen -->
+    <string name="title_register">Empieza una cuenta</string>
+    <string name="label_name">Nombre completo</string>
+    <string name="label_email">Email</string>
+    <string name="hint_name">Jose Moreno</string>
+    <string name="hint_email">josemoreno@email.com</string>
+    <string name="label_password">Contraseña</string>
+    <string name="hint_password">jQWi232Vn</string>
+    <string name="label_phone">Número de Tel.</string>
+    <string name="hint_phone_number">+507 8889-9990</string>
+    <string name="label_confirm_password">Confirmar contraseña</string>
+    <string name="hint_confirm_password">jQWi232Vn</string>
+    <string name="label_profile">Rol</string>
+    <string name="profile_patient">Paciente</string>
+    <string name="profile_guardian">Cuidador/Familiar</string>
+    <string-array name="profile_array">
+        <item>@string/profile_patient</item>
+        <item>@string/profile_guardian</item>
+    </string-array>
+    <string name="sesion_button_clickable">¿Ya tienes una cuenta? Iniciar sesión</string>
+    <string name="button_start">Iniciar</string>
+
+    <!-- Login Screen -->
+    <string name="title_login">Iniciar sesión</string>
+    <string name="hint_login_email">josemoreno@email.com</string>
+    <string name="hint_login_password">Ingresa la contraseña</string>
+    <string name="label_remember_me">Recuerdame</string>
+    <string name="link_forgot_password">Olvide mi contraseña</string>
+    <string name="prompt_new_user">¿Eres nuevo?</string>
+    <string name="link_create_account">Crea una cuenta</string>
+    <string name="button_login_main">Iniciar</string>
+
+    <!-- Strings para Home y Navegación -->
+    <string name="title_home">Home</string>
+    <string name="welcome_message">¡Bienvenido de vuelta!</string>
+    <string name="section_devices">Dispositivos</string>
+    <string name="section_members">Miembros</string>
+    <string name="button_view_cameras">Ver cámaras</string>
+    <string name="nav_home">Inicio</string>
+    <string name="nav_cameras">Cámaras</string>
+    <string name="nav_members">Miembros</string>
+    <string name="nav_profile">Perfil</string>
+
+    <!-- Strings para Cámaras -->
+    <string name="title_cameras">Cámaras</string>
+    <string name="section_monitoring">Monitoreo</string>
+    <string name="camera_status_live">En vivo</string>
+    <string name="camera_status_off">Apagado</string>
+</resources>
