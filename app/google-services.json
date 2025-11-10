@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "917652183583",
+    "project_id": "safecareplus-a05c6",
+    "storage_bucket": "safecareplus-a05c6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917652183583:android:b27bee7a5f62252ecb532a",
+        "android_client_info": {
+          "package_name": "com.safecare.plus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsEaspx6kHoOSi7fHMkQOwzbu_ayCusl8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

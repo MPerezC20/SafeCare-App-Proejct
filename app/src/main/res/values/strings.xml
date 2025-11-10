@@ -19,14 +19,20 @@
     <string name="label_confirm_password">Confirmar contraseña</string>
     <string name="hint_confirm_password">jQWi232Vn</string>
     <string name="label_profile">Rol</string>
-    <string name="profile_patient">Paciente</string>
-    <string name="profile_guardian">Cuidador/Familiar</string>
+    <string name="hint_profile">Seleccione su rol</string>
+    <string name="profile_patient">Familiar</string>
+    <string name="profile_guardian">Cuidador</string>
+    <string name="profile_nurse">Enfermero</string>
     <string-array name="profile_array">
+        <item>Seleccione su rol</item>
         <item>@string/profile_patient</item>
         <item>@string/profile_guardian</item>
+        <item>@string/profile_nurse</item>
     </string-array>
     <string name="sesion_button_clickable">¿Ya tienes una cuenta? Iniciar sesión</string>
     <string name="button_start">Iniciar</string>
+    <string name="profile_image_description">Imagen de perfil</string>
+    <string name="upload_profile_image">Subir imagen</string>
 
     <!-- Login Screen -->
     <string name="title_login">Iniciar sesión</string>

@@ -50,23 +50,23 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginTop="32dp"
-        android:src="@drawable/no_profile"
+        android:src="@drawable/icon5"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_header_card" />
+        app:layout_constraintTop_toBottomOf="@id/profile_header_card" />
 
     <ImageView
         android:id="@+id/shield_icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:src="@drawable/logo"
-        app:layout_constraintBottom_toBottomOf="@id/profile_image"
-        app:layout_constraintEnd_toEndOf="@id/profile_image"
+        app:layout_constraintBottom_toBottomOf="@+id/profile_image"
+        app:layout_constraintEnd_toEndOf="@+id/profile_image"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@id/profile_image"
-        app:layout_constraintTop_toTopOf="@id/profile_image"
+        app:layout_constraintStart_toEndOf="@+id/profile_image"
+        app:layout_constraintTop_toTopOf="@+id/profile_image"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
@@ -74,13 +74,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="29dp"
-        android:text="Laura Romero"
+        android:text="User Name"
         android:textColor="@color/super_gray"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <TextView
         android:id="@+id/profile_role"
@@ -92,11 +92,11 @@
         android:paddingTop="4dp"
         android:paddingEnd="16dp"
         android:paddingBottom="4dp"
-        android:text="Cuidador"
+        android:text="Rol"
         android:textColor="@color/super_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile_name" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
     <TextView
         android:id="@+id/email_label"
@@ -110,7 +110,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profile_role" />
 
-    <EditText
+    <TextView
         android:id="@+id/email_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -119,12 +119,12 @@
         android:textColor="@color/gray"
         android:textSize="15dp"
         android:layout_marginTop="13dp"
-        android:background="@drawable/edit_text_border"
         android:padding="12dp"
         android:text="LauraRomero@email.com"
+        android:background="@drawable/edit_text_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email_label" />
+        app:layout_constraintTop_toBottomOf="@+id/email_label" />
 
     <TextView
         android:id="@+id/phone_label"
@@ -136,9 +136,9 @@
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/email_text" />
+        app:layout_constraintTop_toBottomOf="@+id/email_text" />
 
-    <EditText
+    <TextView
         android:id="@+id/phone_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -147,26 +147,26 @@
         android:layout_marginTop="13dp"
         android:textColor="@color/gray"
         android:textSize="15dp"
-        android:background="@drawable/edit_text_border"
         android:padding="12dp"
         android:text="+507 6788-9088"
+        android:background="@drawable/edit_text_border"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone_label" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_label" />
 
     <Button
-        android:id="@+id/edit_button"
+        android:id="@+id/logout_button"
         android:layout_width="235dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/button_background_blue"
-        android:textColor="@color/black"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_background_dark"
+        android:textColor="@color/super_gray"
         android:textStyle="bold"
-        android:text="Editar informacion"
+        android:text="Cerrar Sesión"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/phone_text" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_text" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

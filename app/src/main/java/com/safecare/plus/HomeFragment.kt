@@ -7,32 +7,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.FirebaseAuth
 
 class HomeFragment : Fragment() {
+
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Carga el nuevo diseño del fragmento que incluye el encabezado
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Lógica para el botón de logout
+        auth = FirebaseAuth.getInstance()
+        val user = auth.currentUser
+
+        val welcomeMessage: TextView = view.findViewById(R.id.welcome_message)
+        if (user != null) {
+            welcomeMessage.text = "¡Bienvenido de vuelta, ${user.email}!"
+        } else {
+            welcomeMessage.text = "¡Bienvenido de vuelta!"
+        }
+        
         val logoutButton: ImageButton = view.findViewById(R.id.logout_button)
         logoutButton.setOnClickListener {
-            Toast.makeText(requireContext(), "Cerrando sesión...", Toast.LENGTH_SHORT).show()
-            // Redirigir a MainActivity (la pantalla de bienvenida)
-            val intent = Intent(requireActivity(), MainActivity::class.java)
-            // Limpiar el stack de actividades para que el usuario no pueda volver atrás
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            startActivity(intent)
+            (activity as? HomeActivity)?.logout()
         }
-
-        // Aquí puedes agregar la lógica para otros botones como "Ver Cámaras"
     }
 }

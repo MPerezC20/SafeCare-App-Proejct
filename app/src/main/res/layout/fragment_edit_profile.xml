@@ -34,7 +34,7 @@
                 android:id="@+id/edit_profile_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Editar perfil"
+                android:text="Perfil"
                 android:textSize="20sp"
                 android:textColor="@color/super_gray"
                 android:textStyle="bold"
@@ -66,33 +66,8 @@
         app:layout_constraintEnd_toEndOf="@+id/profile_image"
         app:layout_constraintStart_toEndOf="@+id/profile_image"
         app:layout_constraintTop_toTopOf="@+id/profile_image"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TextView
-        android:id="@+id/role_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="41dp"
-        android:text="Rol Principal"
-        android:textColor="@color/super_gray"
-        android:textStyle="bold"
-        android:textSize="15dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
-
-    <Spinner
-        android:id="@+id/role_spinner"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="13dp"
-        android:background="@drawable/edit_text_border"
-        android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/role_label" />
+        app:layout_constraintVertical_bias="1.0"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/email_label"
@@ -105,7 +80,7 @@
         android:layout_marginTop="28dp"
         android:text="Email"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/role_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/profile_image" />
 
     <EditText
         android:id="@+id/email_text"
@@ -113,6 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
+        android:layout_marginTop="13dp"
         android:textSize="15dp"
         android:textColor="@color/super_gray"
         android:background="@drawable/edit_text_border"
@@ -120,7 +96,8 @@
         android:text="LauraRomero@email.com"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_label" />
+        app:layout_constraintTop_toBottomOf="@+id/email_label"
+        android:enabled="false"/>
 
     <TextView
         android:id="@+id/phone_label"
@@ -144,11 +121,13 @@
         android:background="@drawable/edit_text_border"
         android:padding="12dp"
         android:text="+507 6788-9088"
+        android:layout_marginTop="13dp"
         android:textSize="14dp"
         android:textColor="@color/super_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_label" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_label"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/discard_button"
@@ -163,7 +142,8 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/save_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_text" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_text"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/save_button"
@@ -177,6 +157,7 @@
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/discard_button"
-        app:layout_constraintTop_toTopOf="@+id/discard_button" />
+        app:layout_constraintTop_toTopOf="@+id/discard_button"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

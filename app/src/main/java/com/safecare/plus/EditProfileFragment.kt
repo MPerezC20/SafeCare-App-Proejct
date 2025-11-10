@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.Spinner
 import androidx.fragment.app.Fragment
 
 class EditProfileFragment : Fragment() {
@@ -24,19 +22,5 @@ class EditProfileFragment : Fragment() {
         }
 
         return view
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val roleSpinner = view.findViewById<Spinner>(R.id.role_spinner)
-        ArrayAdapter.createFromResource(
-            requireContext(),
-            R.array.profile_array,
-            android.R.layout.simple_spinner_item
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            roleSpinner.adapter = adapter
-        }
     }
 }
