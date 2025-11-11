@@ -26,14 +26,9 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         auth = FirebaseAuth.getInstance()
-        val user = auth.currentUser
 
         val welcomeMessage: TextView = view.findViewById(R.id.welcome_message)
-        if (user != null) {
-            welcomeMessage.text = "¡Bienvenido de vuelta, ${user.email}!"
-        } else {
-            welcomeMessage.text = "¡Bienvenido de vuelta!"
-        }
+        welcomeMessage.text = "¡Bienvenido de vuelta!"
         
         val logoutButton: ImageButton = view.findViewById(R.id.logout_button)
         logoutButton.setOnClickListener {
