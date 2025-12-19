@@ -8,10 +8,13 @@
     <color name="select">#EFCE10</color>
     <color name="un_select">#929DC3</color>
     <color name="ultra_gray">#292621</color>
+    <color name="ultra_blue">#415ECC</color>
+
 
 
 
     <!-- Paleta de SafeCare+ basada en la imagen -->
+    <color name="primary_yellow">#FFF09D</color>
     <color name="primary_blue">#B4C7F2</color>
     <color name="tercero_blue">#7790ED</color>
     <color name="dark_gray">#3A3A3A</color>

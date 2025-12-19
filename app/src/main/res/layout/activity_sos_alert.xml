@@ -3,56 +3,90 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_blue">
+    android:background="@color/primary_yellow">
+
+    <!-- Parte blanca inferior -->
+    <View
+        android:id="@+id/white_surface"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/medio_ovalo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Icono de la campana (puesto después para que se vea encima) -->
 
     <ImageView
         android:id="@+id/alert_icon"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/logo"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginBottom="-90dp"
+        android:src="@drawable/bell_alert"
+        app:layout_constraintBottom_toTopOf="@+id/white_surface"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/alert_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="¡ALERTA SOS!"
-        android:textColor="@color/white"
-        android:textSize="40sp"
+        android:layout_marginTop="100dp"
+        android:text="ALERTA SOS"
+        android:textColor="@color/login_link_blue"
+        android:gravity="center"
+        android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/alert_icon" />
+        app:layout_constraintTop_toTopOf="@id/white_surface" />
 
     <TextView
         android:id="@+id/alert_message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
-        android:text="Se ha activado el botón de emergencia de Mauricio"
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:text="Se ha activado el botón de emergencia. Revisa que problema existe, puede ser urgente."
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/alert_title" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_check_cameras"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="64dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button_alert"
+        android:text="Revisar camaras"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/btn_dismiss"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_dismiss"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginHorizontal="48dp"
+        android:layout_width="0dp"
+        android:layout_height="44dp"
+        android:layout_marginHorizontal="64dp"
         android:layout_marginBottom="100dp"
-        android:backgroundTint="@color/white"
-        android:text="ENTENDIDO"
-        android:textColor="@color/primary_blue"
-        android:textSize="20sp"
+        android:background="@drawable/button_alert"
+        android:text="Entendido"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

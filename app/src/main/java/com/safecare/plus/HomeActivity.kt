@@ -20,7 +20,6 @@ class HomeActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val camerasFragment = CamerasFragment()
-    private val membersFragment = MembersFragment()
     private val profileFragment = ProfileFragment()
     private val editProfileFragment = EditProfileFragment()
 
@@ -81,10 +80,6 @@ class HomeActivity : AppCompatActivity() {
                 }
                 R.id.nav_cameras -> {
                     replaceFragment(camerasFragment)
-                    true
-                }
-                R.id.nav_members -> {
-                    replaceFragment(membersFragment)
                     true
                 }
                 R.id.nav_profile -> {
