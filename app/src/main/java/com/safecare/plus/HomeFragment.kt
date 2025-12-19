@@ -70,7 +70,6 @@ class HomeFragment : Fragment() {
         val powerText: TextView = view.findViewById(R.id.power_text_internal)
 
         // UI de Monitoreo rápido (Home)
-        val noCamerasText: TextView = view.findViewById(R.id.no_cameras_text)
         val cardCamera: CardView = view.findViewById(R.id.card_camera)
         
         // Variable para controlar el estado del switch visualmente
@@ -81,13 +80,11 @@ class HomeFragment : Fragment() {
             updateSwitchUI(isDeviceEnabled, powerSwitch, powerIcon, powerText)
         }
 
-        // Simulación de cámara en Home
+        // Simulación de cámara en Home (Oculta por defecto si no hay conexión)
         val isCameraConnected = false 
         if (isCameraConnected) {
-            noCamerasText.visibility = View.GONE
             cardCamera.visibility = View.VISIBLE
         } else {
-            noCamerasText.visibility = View.VISIBLE
             cardCamera.visibility = View.GONE
         }
 
