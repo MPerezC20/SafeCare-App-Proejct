@@ -38,5 +38,5 @@
 
     <!-- Colores Adicionales Home -->
     <color name="soft_blue">#DCE5F9</color>
-    <color name="card_background">#F8F8F8</color>
+    <color name="card_background">#FFFFFF</color>
 </resources>

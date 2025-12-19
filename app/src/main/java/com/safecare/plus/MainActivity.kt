@@ -28,12 +28,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
-    /**
-     * NOTA IMPORTANTE: Para las funcionalidades de CÁMARA y BLUETOOTH (BLE),
-     * DEBERÁS implementar la lógica para solicitar los permisos definidos
-     * en AndroidManifest.xml en tiempo de ejecución (runtime permissions)
-     * tan pronto como el usuario inicie sesión.
-     * Esto es CRÍTICO para versiones de Android 6.0 (Marshmallow) en adelante.
-     */
 }

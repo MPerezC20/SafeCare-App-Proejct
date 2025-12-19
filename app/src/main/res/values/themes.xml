@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="Theme.SafeCarePlus" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.SafeCarePlus" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Colores base -->
         <item name="colorPrimary">@color/primary_blue</item>
         <item name="colorPrimaryVariant">@color/background_top_blue</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -8,7 +9,14 @@
         <item name="colorSecondary">@color/primary_blue</item>
         <item name="colorOnSecondary">@color/white</item>
 
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Fondo blanco absoluto para toda la app y ventanas -->
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorSurface">@color/white</item>
+        
+        <!-- Desactivar forzado de modo oscuro en cualquier dispositivo -->
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
 
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
     </style>
 </resources>
