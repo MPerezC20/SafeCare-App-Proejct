@@ -171,20 +171,32 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/device_name" />
 
+                <TextView
+                    android:id="@+id/connection_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Conectado"
+                    android:textColor="#4CAF50"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/device_model" />
+
                 <LinearLayout
                     android:id="@+id/power_switch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="16dp"
                     android:background="@drawable/rounded_corner"
                     android:backgroundTint="#E0E0E0"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:padding="4dp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/device_model">
+                    app:layout_constraintTop_toBottomOf="@id/connection_status">
 
                     <ImageView
+                        android:id="@+id/power_icon_internal"
                         android:layout_width="32dp"
                         android:layout_height="32dp"
                         android:background="@drawable/button_alert"
@@ -194,6 +206,7 @@
                         app:tint="@color/white" />
 
                     <TextView
+                        android:id="@+id/power_text_internal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="12dp"
@@ -241,6 +254,71 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
+        <!-- Tarjeta de Cámara (SecureView) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@color/black" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#666666"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SecureView"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/camera_status_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Apagado"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+
+                        <View
+                            android:id="@+id/camera_status_dot"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginStart="6dp"
+                            android:background="@drawable/ic_off_dot" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_view_cameras"
             android:layout_width="match_parent"
@@ -248,7 +326,7 @@
             android:layout_marginHorizontal="24dp"
             android:layout_marginBottom="24dp"
             app:backgroundTint="@color/login_link_blue"
-            android:text="Ver camaras"
+            android:text="Ver cámaras"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="16sp"
