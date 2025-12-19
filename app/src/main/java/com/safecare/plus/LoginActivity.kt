@@ -65,28 +65,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupLinks() {
-        val forgotPasswordText: TextView = findViewById(R.id.forgot_password_link)
-        val forgotText = getString(R.string.link_forgot_password)
-        val spannableForgot = SpannableString(forgotText)
-
-        val forgotSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                Toast.makeText(this@LoginActivity, "Ir a Restablecer Contraseña", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun updateDrawState(ds: TextPaint) {
-                super.updateDrawState(ds)
-                ds.isUnderlineText = true
-                ds.color = ContextCompat.getColor(this@LoginActivity, R.color.login_link_blue)
-                ds.bgColor = Color.TRANSPARENT
-            }
-        }
-
-        spannableForgot.setSpan(forgotSpan, 0, forgotText.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        forgotPasswordText.text = spannableForgot
-        forgotPasswordText.movementMethod = LinkMovementMethod.getInstance()
-        forgotPasswordText.highlightColor = Color.TRANSPARENT
-
         val createAccountLink: TextView = findViewById(R.id.link_create_account)
         val createAccountText = getString(R.string.link_create_account)
         val spannableCreate = SpannableString(createAccountText)
