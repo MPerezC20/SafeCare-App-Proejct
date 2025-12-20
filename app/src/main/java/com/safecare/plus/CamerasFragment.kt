@@ -9,6 +9,8 @@ import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -18,11 +20,18 @@ class CamerasFragment : Fragment() {
 
     private var streamHandler: MjpegStreamHandler? = null
     private lateinit var emptyState: LinearLayout
+    private lateinit var statusMessage: TextView
     private lateinit var cameraCard: CardView
     private lateinit var streamView: ImageView
     private lateinit var fullscreenContainer: FrameLayout
     private lateinit var streamContainer: FrameLayout
     private var isFullscreen = false
+
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (isFullscreen) toggleFullscreen() else navigateToHome()
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,33 +43,32 @@ class CamerasFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedCallback)
+
         emptyState = view.findViewById(R.id.empty_camera_state)
+        statusMessage = view.findViewById(R.id.empty_state_text) // Asegúrate de que este ID exista en tu XML
         cameraCard = view.findViewById(R.id.card_camera_detail)
         streamView = view.findViewById(R.id.camera_stream_view)
         fullscreenContainer = view.findViewById(R.id.fullscreen_container)
         streamContainer = view.findViewById(R.id.stream_container)
         
-        val backButton: ImageButton = view.findViewById(R.id.back_button)
-        val btnFullscreen: ImageButton = view.findViewById(R.id.btn_fullscreen)
-
-        backButton.setOnClickListener {
-            if (isFullscreen) {
-                toggleFullscreen()
-            } else {
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, HomeFragment())
-                    .commit()
-
-                val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
-                bottomNav.selectedItemId = R.id.nav_home
-            }
+        view.findViewById<ImageButton>(R.id.back_button).setOnClickListener {
+            if (isFullscreen) toggleFullscreen() else navigateToHome()
         }
 
-        btnFullscreen.setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btn_fullscreen).setOnClickListener {
             toggleFullscreen()
         }
 
-        // Inicializar el manejador
+        // --- LÓGICA DE CONTROL SEGÚN SWITCH DEL HOME ---
+        if (HomeFragment.isCameraSwitchOn) {
+            setupStream()
+        } else {
+            showCameraOffState()
+        }
+    }
+
+    private fun setupStream() {
         streamHandler = MjpegStreamHandler(streamView) { isConnected ->
             if (isConnected) {
                 emptyState.visibility = View.GONE
@@ -68,11 +76,27 @@ class CamerasFragment : Fragment() {
             } else {
                 emptyState.visibility = View.VISIBLE
                 cameraCard.visibility = View.GONE
+                statusMessage.text = "Cámara no disponible en la red"
             }
         }
-        
         streamHandler?.streamUrl = "http://10.236.177.237:81/stream"
         streamHandler?.startCamera()
+    }
+
+    private fun showCameraOffState() {
+        emptyState.visibility = View.VISIBLE
+        cameraCard.visibility = View.GONE
+        statusMessage.text = "La cámara está apagada desde el Home"
+        streamView.setImageResource(R.drawable.no_video) // Usar el recurso que ya tienes
+    }
+
+    private fun navigateToHome() {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, HomeFragment())
+            .commit()
+
+        val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
+        bottomNav.selectedItemId = R.id.nav_home
     }
 
     private fun toggleFullscreen() {
@@ -83,28 +107,20 @@ class CamerasFragment : Fragment() {
         val scroll = view?.findViewById<View>(R.id.cameras_scroll)
 
         if (isFullscreen) {
-            // Modo Horizontal y Pantalla Completa
             activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
             bottomNav.visibility = View.GONE
             header?.visibility = View.GONE
             scroll?.visibility = View.GONE
             
-            // Mover el ImageView al contenedor de pantalla completa
             (streamView.parent as? ViewGroup)?.removeView(streamView)
             fullscreenContainer.addView(streamView)
             fullscreenContainer.visibility = View.VISIBLE
-            
-            // Ajustar imagen para que llene la pantalla
-            streamView.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-            streamView.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
             streamView.scaleType = ImageView.ScaleType.FIT_CENTER
             
-            // Ocultar barra de estado y navegación
             activity.window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN 
                     or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION 
                     or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         } else {
-            // Volver a Vertical
             activity.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
             bottomNav.visibility = View.VISIBLE
             header?.visibility = View.VISIBLE
@@ -112,15 +128,9 @@ class CamerasFragment : Fragment() {
             
             fullscreenContainer.visibility = View.GONE
             fullscreenContainer.removeView(streamView)
-            
-            // Devolver el ImageView a su contenedor original
             streamContainer.addView(streamView, 0)
-            
-            streamView.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-            streamView.layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
             streamView.scaleType = ImageView.ScaleType.FIT_CENTER
             
-            // Mostrar barras de nuevo
             activity.window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
         }
     }
@@ -129,10 +139,5 @@ class CamerasFragment : Fragment() {
         super.onStop()
         streamHandler?.stopCamera()
         requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        streamHandler?.stopCamera()
     }
 }

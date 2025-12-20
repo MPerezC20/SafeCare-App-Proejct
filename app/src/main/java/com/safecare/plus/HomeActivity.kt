@@ -70,7 +70,8 @@ class HomeActivity : AppCompatActivity() {
 
         val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        replaceFragment(homeFragment)
+        // Manejar el Intent para abrir cámaras directamente
+        handleIntent(intent)
 
         bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
@@ -87,6 +88,24 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 else -> false
+            }
+        }
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        handleIntent(intent)
+    }
+
+    private fun handleIntent(intent: Intent?) {
+        if (intent?.getBooleanExtra("OPEN_CAMERAS", false) == true) {
+            val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+            bottomNavigationView.selectedItemId = R.id.nav_cameras
+            replaceFragment(camerasFragment)
+        } else {
+            // Por defecto abrir Home solo si no hay un fragmento ya cargado
+            if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
+                replaceFragment(homeFragment)
             }
         }
     }

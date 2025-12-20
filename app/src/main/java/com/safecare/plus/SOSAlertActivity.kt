@@ -1,6 +1,7 @@
 package com.safecare.plus
 
 import android.content.Context
+import android.content.Intent
 import android.os.*
 import android.view.WindowManager
 import android.widget.Button
@@ -32,6 +33,17 @@ class SOSAlertActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btn_dismiss).setOnClickListener {
             vibrator?.cancel()
+            finish()
+        }
+
+        findViewById<Button>(R.id.btn_check_cameras).setOnClickListener {
+            vibrator?.cancel()
+            // Iniciar HomeActivity y decirle que abra el fragmento de cámaras
+            val intent = Intent(this, HomeActivity::class.java).apply {
+                putExtra("OPEN_CAMERAS", true)
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+            startActivity(intent)
             finish()
         }
     }

@@ -5,26 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
+    android:background="#F8F9FF"
     tools:context=".HomeFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="16dp">
+        android:paddingBottom="32dp">
 
-        <!-- Header con Saludo y Botón de Logout -->
+        <!-- Header -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="8dp"
-            android:layout_margin="8dp">
+            app:cardElevation="2dp"
+            app:cardCornerRadius="24dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/white">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="24dp">
 
                 <TextView
                     android:id="@+id/home_title"
@@ -40,38 +43,39 @@
 
                 <ImageButton
                     android:id="@+id/logout_button"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Cerrar sesión"
                     android:src="@drawable/log_out"
+                    android:scaleType="fitCenter"
                     app:layout_constraintBottom_toBottomOf="@id/home_title"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/home_title" />
+                    app:layout_constraintTop_toTopOf="@id/home_title"
+                    app:tint="@color/login_link_blue" />
 
                 <TextView
                     android:id="@+id/welcome_message"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginEnd="16dp"
                     android:text="¡Bienvenido de vuelta!"
                     android:textColor="@color/black"
-                    android:textSize="28sp"
+                    android:textSize="32sp"
                     android:textStyle="bold"
+                    android:lineSpacingExtra="4dp"
                     app:layout_constraintEnd_toStartOf="@+id/logo_home"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/home_title" />
 
                 <ImageView
                     android:id="@+id/logo_home"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:src="@drawable/logo"
                     app:layout_constraintBottom_toBottomOf="@id/welcome_message"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/welcome_message" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -80,257 +84,235 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
             android:text="Dispositivos"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
-        <!-- Banner de búsqueda BLE -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/ble_status_card"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="16dp"
-            android:visibility="gone"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp"
-            app:cardBackgroundColor="#F5F5F5">
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
 
-            <LinearLayout
+            <!-- Tarjeta SafeButton -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_esp32_sos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="4dp">
 
-                <ProgressBar
-                    android:id="@+id/ble_progress"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="12dp" />
-
-                <ImageView
-                    android:id="@+id/ble_icon"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="12dp"
-                    android:src="@drawable/ic_bluetooth"
-                    android:visibility="gone"
-                    app:tint="@color/login_link_blue" />
-
-                <TextView
-                    android:id="@+id/ble_status_text"
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Buscando dispositivo SOS..."
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Tarjeta del dispositivo cuando está conectado (Rediseñada) -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_esp32_sos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="16dp"
-            android:visibility="gone"
-            app:cardCornerRadius="20dp"
-            app:cardElevation="4dp"
-            app:cardBackgroundColor="#F8F9FF">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="20dp">
-
-                <TextView
-                    android:id="@+id/device_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SafeButton"
-                    android:textColor="@color/black"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/device_model"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Esp32 S3 Zero"
-                    android:textColor="#9E9E9E"
-                    android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/device_name" />
-
-                <TextView
-                    android:id="@+id/connection_status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Conectado"
-                    android:textColor="#4CAF50"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/device_model" />
-
-                <LinearLayout
-                    android:id="@+id/power_switch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/rounded_corner"
-                    android:backgroundTint="#E0E0E0"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:padding="4dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/connection_status">
-
-                    <ImageView
-                        android:id="@+id/power_icon_internal"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:background="@drawable/button_alert"
-                        android:backgroundTint="#FFD600"
-                        android:padding="6dp"
-                        android:src="@drawable/ic_power_button"
-                        app:tint="@color/white" />
+                    android:padding="24dp">
 
                     <TextView
-                        android:id="@+id/power_text_internal"
+                        android:id="@+id/device_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="12dp"
-                        android:text="OFF"
+                        android:text="SafeButton"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/device_model"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Esp32 S3 Zero"
                         android:textColor="#9E9E9E"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/device_name" />
 
-                <ImageView
-                    android:id="@+id/device_image"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:src="@drawable/reloj"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        android:id="@+id/connection_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Buscando..."
+                        android:textColor="#9E9E9E"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/device_model" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                    <LinearLayout
+                        android:id="@+id/power_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/rounded_corner"
+                        android:backgroundTint="#F5F5F5"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="6dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/connection_status">
 
-        <!-- Botón de Añadir Dispositivo (Centrado) -->
-        <ImageButton
-            android:id="@+id/btn_add_device"
-            android:layout_width="match_parent"
-            android:layout_height="47dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/button_background_dark"
-            app:backgroundTint="#7A7671"
-            android:src="@drawable/mas_button"
-            android:scaleType="centerInside"
-            android:contentDescription="Añadir dispositivo" />
+                        <ImageView
+                            android:id="@+id/power_icon_internal"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/button_alert"
+                            android:backgroundTint="#FFD600"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_power_button"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:id="@+id/power_text_internal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="12dp"
+                            android:text="ON"
+                            android:textColor="#9E9E9E"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/reloj"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Tarjeta Cámara Home -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_camera_home"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginBottom="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="28dp"
+                app:cardElevation="4dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="24dp">
+
+                    <TextView
+                        android:id="@+id/cam_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SecureView Camera"
+                        android:textColor="@color/black"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/cam_model"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="Esp32 S3"
+                        android:textColor="#9E9E9E"
+                        android:textSize="18sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cam_name" />
+
+                    <TextView
+                        android:id="@+id/cam_connection_status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Buscando..."
+                        android:textColor="#9E9E9E"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cam_model" />
+
+                    <LinearLayout
+                        android:id="@+id/cam_power_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/rounded_corner"
+                        android:backgroundTint="#F5F5F5"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="6dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cam_connection_status">
+
+                        <ImageView
+                            android:id="@+id/cam_power_icon"
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/button_alert"
+                            android:backgroundTint="#FFD600"
+                            android:padding="8dp"
+                            android:src="@drawable/ic_power_button"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:id="@+id/cam_power_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="12dp"
+                            android:text="ON"
+                            android:textColor="#9E9E9E"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/esp32_cam"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
 
         <!-- Sección de Monitoreo -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
             android:text="Monitoreo"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
-
-        <!-- Tarjeta de Cámara (SecureView) -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_camera"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="16dp"
-            android:visibility="gone"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="4dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="160dp"
-                    android:background="@color/black" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#666666"
-                    android:padding="12dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SecureView"
-                        android:textColor="@color/white"
-                        android:textSize="14sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <TextView
-                            android:id="@+id/camera_status_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Apagado"
-                            android:textColor="@color/white"
-                            android:textSize="14sp" />
-
-                        <View
-                            android:id="@+id/camera_status_dot"
-                            android:layout_width="8dp"
-                            android:layout_height="8dp"
-                            android:layout_marginStart="6dp"
-                            android:background="@drawable/ic_off_dot" />
-                    </LinearLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_view_cameras"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="64dp"
             android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="32dp"
             app:backgroundTint="@color/login_link_blue"
             android:text="Ver cámaras"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:textStyle="bold"
-            app:cornerRadius="10dp" />
+            app:cornerRadius="16dp"
+            app:elevation="4dp" />
 
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

@@ -80,11 +80,13 @@
                 android:gravity="center"
                 android:paddingVertical="60dp">
                 <ImageView
+                    android:id="@+id/no_video_image"
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:src="@drawable/no_video"
                     android:alpha="0.5" />
                 <TextView
+                    android:id="@+id/empty_state_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Buscando cámara..."
@@ -138,7 +140,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="SafeCare AI Camera"
+                            android:text="SafeSecure View"
                             android:textColor="@color/white"
                             android:textStyle="bold" />
                         <View
