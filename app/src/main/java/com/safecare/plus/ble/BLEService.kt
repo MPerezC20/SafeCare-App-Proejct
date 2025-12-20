@@ -29,10 +29,21 @@ class BLEService : Service(), BLEManager.BLEListener {
     companion object {
         private val _bleStatus = MutableLiveData<BLEState>(BLEState.IDLE)
         val bleStatus: LiveData<BLEState> = _bleStatus
+        
+        private var instance: BLEService? = null
+
+        fun disconnectDevice() {
+            instance?.bleManager?.disconnect()
+        }
+
+        fun connectDevice() {
+            instance?.startScanning()
+        }
     }
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
         bleManager = BLEManager(this, this)
         createNotificationChannels()
         startForeground(NOTIFICATION_ID, createServiceNotification())
@@ -51,14 +62,11 @@ class BLEService : Service(), BLEManager.BLEListener {
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onSOSAlertReceived() {
-        // Lanzar la actividad de alerta a pantalla completa (como una llamada)
         val intent = Intent(this, SOSAlertActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
         }
         startActivity(intent)
-        
-        // También mostramos la notificación por si la pantalla está bloqueada
         showSOSNotification()
     }
 
@@ -115,7 +123,7 @@ class BLEService : Service(), BLEManager.BLEListener {
             .setCategory(NotificationCompat.CATEGORY_ALARM)
             .setAutoCancel(true)
             .setSound(alarmSound)
-            .setFullScreenIntent(fullScreenPendingIntent, true) // Esto hace que salte el pop-up
+            .setFullScreenIntent(fullScreenPendingIntent, true)
             .build()
 
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -159,5 +167,6 @@ class BLEService : Service(), BLEManager.BLEListener {
         super.onDestroy()
         bleManager.disconnect()
         _bleStatus.postValue(BLEState.IDLE)
+        instance = null
     }
 }

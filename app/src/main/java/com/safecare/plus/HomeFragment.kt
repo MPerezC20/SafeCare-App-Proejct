@@ -42,16 +42,13 @@ class HomeFragment : Fragment() {
             (activity as? HomeActivity)?.logout()
         }
 
-        // Configuración del botón "Ver cámaras"
         val viewCamerasButton: Button = view.findViewById(R.id.button_view_cameras)
         viewCamerasButton.setOnClickListener {
-            // Navegar a CamerasFragment
             parentFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, CamerasFragment())
                 .addToBackStack(null)
                 .commit()
 
-            // Actualizar la barra de navegación inferior
             val bottomNav = requireActivity().findViewById<BottomNavigationView>(R.id.bottom_navigation)
             bottomNav.selectedItemId = R.id.nav_cameras
         }
@@ -69,18 +66,30 @@ class HomeFragment : Fragment() {
         val powerIcon: ImageView = view.findViewById(R.id.power_icon_internal)
         val powerText: TextView = view.findViewById(R.id.power_text_internal)
 
-        // UI de Monitoreo rápido (Home)
+        // UI de Cámara
         val cardCamera: CardView = view.findViewById(R.id.card_camera)
         
-        // Variable para controlar el estado del switch visualmente
-        var isDeviceEnabled = true
+        // Estado del switch basado en la conexión real
+        var isSwitchOn = true
 
         powerSwitch.setOnClickListener {
-            isDeviceEnabled = !isDeviceEnabled
-            updateSwitchUI(isDeviceEnabled, powerSwitch, powerIcon, powerText)
+            isSwitchOn = !isSwitchOn
+            updateSwitchUI(isSwitchOn, powerSwitch, powerIcon, powerText)
+            
+            if (isSwitchOn) {
+                // Si pasamos a amarillo (ON), intentamos conectar
+                BLEService.connectDevice()
+                connectionStatusText.text = "Buscando..."
+                connectionStatusText.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_orange_dark))
+            } else {
+                // Si pasamos a gris (OFF), desconectamos e inmediatamente ponemos "Desconectado"
+                BLEService.disconnectDevice()
+                connectionStatusText.text = "Desconectado"
+                connectionStatusText.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
+            }
         }
 
-        // Simulación de cámara en Home (Oculta por defecto si no hay conexión)
+        // Simulación de cámara en Home
         val isCameraConnected = false 
         if (isCameraConnected) {
             cardCamera.visibility = View.VISIBLE
@@ -101,8 +110,11 @@ class HomeFragment : Fragment() {
                     } else {
                         bleStatusCard.visibility = View.GONE
                         cardEsp32.visibility = View.VISIBLE
-                        connectionStatusText.text = "Reconectando..."
-                        connectionStatusText.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_orange_dark))
+                        // Solo actualizamos si el switch está en ON
+                        if (isSwitchOn) {
+                            connectionStatusText.text = "Reconectando..."
+                            connectionStatusText.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_orange_dark))
+                        }
                     }
                 }
                 BLEService.BLEState.CONNECTED -> {
@@ -111,7 +123,8 @@ class HomeFragment : Fragment() {
                     cardEsp32.visibility = View.VISIBLE
                     connectionStatusText.text = "Conectado"
                     connectionStatusText.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_green_dark))
-                    isDeviceEnabled = true
+                    
+                    isSwitchOn = true
                     updateSwitchUI(true, powerSwitch, powerIcon, powerText)
                 }
                 BLEService.BLEState.DISCONNECTED -> {
@@ -120,6 +133,9 @@ class HomeFragment : Fragment() {
                         cardEsp32.visibility = View.VISIBLE
                         connectionStatusText.text = "Desconectado"
                         connectionStatusText.setTextColor(ContextCompat.getColor(requireContext(), android.R.color.holo_red_dark))
+                        
+                        isSwitchOn = false
+                        updateSwitchUI(false, powerSwitch, powerIcon, powerText)
                     } else {
                         bleStatusCard.visibility = View.VISIBLE
                         bleStatusText.text = "Dispositivo desconectado"
@@ -140,11 +156,24 @@ class HomeFragment : Fragment() {
 
     private fun updateSwitchUI(enabled: Boolean, container: LinearLayout, icon: ImageView, text: TextView) {
         if (enabled) {
+            // Estado ON (Amarillo) - Icono a la izquierda
             container.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.white)
             container.setBackgroundResource(R.drawable.rounded_corner)
+            
             container.removeAllViews()
+            container.addView(icon)
+            container.addView(text)
+            
+            icon.backgroundTintList = ContextCompat.getColorStateList(requireContext(), android.R.color.holo_orange_light)
+            icon.alpha = 1.0f
+            text.text = "ON"
+            text.setTextColor(android.graphics.Color.parseColor("#9E9E9E"))
+        } else {
+            // Estado OFF (Gris) - Icono a la derecha
+            container.removeAllViews()
+            
             val newText = TextView(context).apply {
-                this.text = "ON"
+                this.text = "OFF"
                 this.textAlignment = View.TEXT_ALIGNMENT_CENTER
                 this.setTextColor(android.graphics.Color.parseColor("#9E9E9E"))
                 this.textSize = 12f
@@ -153,18 +182,12 @@ class HomeFragment : Fragment() {
                 params.setMargins(12, 0, 12, 0)
                 this.layoutParams = params
             }
+            
             container.addView(newText)
             container.addView(icon)
+            
             icon.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.black)
             icon.alpha = 0.6f
-            text.text = "ON"
-        } else {
-            container.removeAllViews()
-            container.addView(icon)
-            container.addView(text)
-            icon.backgroundTintList = ContextCompat.getColorStateList(requireContext(), android.R.color.holo_orange_light)
-            icon.alpha = 1.0f
-            text.text = "OFF"
             container.backgroundTintList = ContextCompat.getColorStateList(requireContext(), R.color.white)
         }
     }
