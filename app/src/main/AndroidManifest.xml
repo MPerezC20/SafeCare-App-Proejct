@@ -87,6 +87,13 @@
             android:label="@string/title_login"
             android:theme="@style/Theme.SafeCarePlus" />
 
+        <!-- Declaración de la actividad Signos Vitales -->
+        <activity
+            android:name=".SignosVitalesActivity"
+            android:exported="false"
+            android:label="@string/title_vitales"
+            android:theme="@style/Theme.SafeCarePlus" />
+
         <!-- Declaración de la actividad Home -->
         <activity
             android:name=".HomeActivity"

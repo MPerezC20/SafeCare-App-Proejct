@@ -83,6 +83,11 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(camerasFragment)
                     true
                 }
+                R.id.nav_vitales -> {
+                    val intent = Intent(this, SignosVitalesActivity::class.java)
+                    startActivity(intent)
+                    true
+                }
                 R.id.nav_profile -> {
                     replaceFragment(profileFragment)
                     true
@@ -98,14 +103,20 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun handleIntent(intent: Intent?) {
-        if (intent?.getBooleanExtra("OPEN_CAMERAS", false) == true) {
-            val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
-            bottomNavigationView.selectedItemId = R.id.nav_cameras
-            replaceFragment(camerasFragment)
-        } else {
-            // Por defecto abrir Home solo si no hay un fragmento ya cargado
-            if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
-                replaceFragment(homeFragment)
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation)
+        when {
+            intent?.getBooleanExtra("OPEN_CAMERAS", false) == true -> {
+                bottomNavigationView.selectedItemId = R.id.nav_cameras
+                replaceFragment(camerasFragment)
+            }
+            intent?.getBooleanExtra("OPEN_PROFILE", false) == true -> {
+                bottomNavigationView.selectedItemId = R.id.nav_profile
+                replaceFragment(profileFragment)
+            }
+            else -> {
+                if (supportFragmentManager.findFragmentById(R.id.fragment_container) == null) {
+                    replaceFragment(homeFragment)
+                }
             }
         }
     }
