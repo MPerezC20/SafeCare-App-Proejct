@@ -52,8 +52,27 @@
     <string name="button_view_cameras">Ver cámaras</string>
     <string name="nav_home">Inicio</string>
     <string name="nav_cameras">Cámaras</string>
+    <string name="nav_vitales">Vitales</string>
     <string name="nav_members">Miembros</string>
     <string name="nav_profile">Perfil</string>
+
+    <!-- Strings para Signos Vitales -->
+    <string name="title_vitales">SafeWatch</string>
+    <string name="btn_actualizar">Actualizar</string>
+    <string name="vitales_subtitle">Signos vitales en función</string>
+    <string name="heart_rate_title">Frecuencia cardíaca</string>
+    <string name="heart_rate_value">100 BPM</string>
+    <string name="heart_rate_status">Normal</string>
+    <string name="oxygen_title">Oxígeno en la sangre</string>
+    <string name="oxygen_value">99%</string>
+    <string name="temperature_title">Temperatura</string>
+    <string name="temperature_value">36 C°</string>
+    <string name="vitales_date">04-17</string>
+    <string name="vitales_stable">Tus signos vitales son estables</string>
+    <string name="vitales_normal_range_title">Rangos normales:</string>
+    <string name="vitales_heart_range">Frecuencia cardíaca: 60 - 100 BPM</string>
+    <string name="vitales_oxygen_range">Oxígeno en la sangre: 95% - 100%</string>
+    <string name="vitales_temp_range">Temperatura: 36.5°C - 37.2°C</string>
 
     <!-- Strings para Cámaras -->
     <string name="title_cameras">Cámaras</string>

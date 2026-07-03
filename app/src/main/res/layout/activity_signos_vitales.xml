@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/reloj"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_above="@id/bottom_navigation">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp">
+
+            <!-- Top Bar -->
+            <RelativeLayout
+                android:id="@+id/top_bar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/white"
+                android:elevation="4dp">
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_arrow_back" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="@string/title_vitales"
+                    android:textColor="@color/super_gray"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <!-- Subtitle -->
+            <TextView
+                android:id="@+id/tv_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/top_bar"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/vitales_subtitle"
+                android:textColor="@color/super_gray"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/btn_actualizar"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_below="@id/top_bar"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:backgroundTint="#4A86E8"
+                android:text="@string/btn_actualizar"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <!-- Heart Rate Card (Large) -->
+
+            <!-- Two small cards row -->
+            <RelativeLayout
+                android:id="@+id/card_heart_rate"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_below="@id/tv_subtitle"
+                android:layout_margin="16dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_heart_rate_bg"
+                android:elevation="6dp">
+
+                <TextView
+                    android:id="@+id/tv_heart_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/heart_rate_title"
+                    android:textColor="@color/text_gray"
+                    android:textSize="14sp" />
+
+
+                <!-- ECG Line -->
+                <TextView
+                    android:id="@+id/tv_heart_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_heart_title"
+                    android:layout_marginStart="56dp"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/heart_rate_value"
+                    android:textColor="#FF6B6B"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_heart_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_heart_value"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="28dp"
+                    android:text="@string/vitales_date"
+                    android:textColor="@color/text_gray"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="120dp"
+                    android:layout_height="48dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:src="@drawable/ic_ecg_line" />
+
+                <ImageView
+                    android:id="@+id/iv_heart_icon"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_below="@id/imageView"
+                    android:layout_alignStart="@id/imageView"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_heart" />
+
+                <TextView
+                    android:id="@+id/tv_heart_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/imageView"
+                    android:layout_toEndOf="@id/iv_heart_icon"
+                    android:layout_alignTop="@id/iv_heart_icon"
+                    android:layout_marginStart="8dp"
+                    android:background="#E8F5E9"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="3dp"
+                    android:text="@string/heart_rate_status"
+                    android:textColor="#4CAF50"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_small_cards"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/card_heart_rate"
+                android:layout_marginHorizontal="16dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <!-- Oxygen Card -->
+                <RelativeLayout
+                    android:id="@+id/card_oxygen"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/card_small_bg"
+                    android:elevation="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_oxygen_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/oxygen_title"
+                        android:textColor="@color/text_gray"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_oxygen_icon"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_below="@id/tv_oxygen_title"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_oxygen" />
+
+                    <TextView
+                        android:id="@+id/tv_oxygen_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_oxygen_title"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/oxygen_value"
+                        android:textColor="#7C4DFF"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_oxygen_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_oxygen_icon"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/vitales_date"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+
+                <!-- Temperature Card -->
+                <RelativeLayout
+                    android:id="@+id/card_temperature"
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/card_small_bg"
+                    android:elevation="4dp">
+
+                    <TextView
+                        android:id="@+id/tv_temp_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="14dp"
+                        android:text="@string/temperature_title"
+                        android:textColor="@color/text_gray"
+                        android:textSize="12sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_temp_icon"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_below="@id/tv_temp_title"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/ic_temperature" />
+
+                    <TextView
+                        android:id="@+id/tv_temp_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_temp_title"
+                        android:layout_marginStart="48dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/temperature_value"
+                        android:textColor="#2196F3"
+                        android:textSize="26sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_temp_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_temp_icon"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/vitales_date"
+                        android:textColor="@color/text_gray"
+                        android:textSize="11sp" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <!-- Informational Card -->
+            <RelativeLayout
+                android:id="@+id/card_info"
+                android:layout_width="match_parent"
+                android:layout_height="145dp"
+                android:layout_below="@id/ll_small_cards"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/card_info_bg"
+                android:elevation="4dp"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/tv_info_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vitales_stable"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_info_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_info_title"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/vitales_normal_range_title"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_heart_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_info_subtitle"
+                    android:layout_marginTop="6dp"
+                    android:text="@string/vitales_heart_range"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_oxygen_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_heart_range"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/vitales_oxygen_range"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_temp_range"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_oxygen_range"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/vitales_temp_range"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <ImageView
+                    android:layout_width="55dp"
+                    android:layout_height="45dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="10dp"
+                    android:alpha="0.35"
+                    android:src="@drawable/ic_decorative_heartbeat" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/super_gray"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>
